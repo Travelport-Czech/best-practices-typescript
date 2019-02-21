@@ -12,9 +12,6 @@ const serverConfig = {
   optimization: {
     minimize: false
   },
-  externals: [
-    /aws-sdk/, // Available on AWS Lambda
-  ],
   devtool: 'source-map',
   resolve: {
     extensions: ['.ts', '.tsx'],
