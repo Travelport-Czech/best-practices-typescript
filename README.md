@@ -2,7 +2,7 @@
 
 ## Basic Webpack file for Node (Webpack version 4.x)
 ```
-yarn add --dev webpack webpack-cli babel-loader babel-plugin-module-resolver @babel/preset-env @babel/preset-react @babel/preset-typescript @babel/plugin-proposal-class-properties @babel/plugin-proposal-object-rest-spread 
+yarn add --dev webpack webpack-cli react babel-loader babel-plugin-module-resolver @babel/preset-env @babel/preset-react @babel/preset-typescript @babel/plugin-proposal-class-properties @babel/plugin-proposal-object-rest-spread 
 ```
 
 ```javascript
@@ -64,7 +64,7 @@ import * as React from 'react'
 
 export class EmailButton extends React.Component<> {
   state = {
-    ordered: true
+    hovered: false
   }
   public render () {
     // ...
