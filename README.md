@@ -114,3 +114,29 @@ if (!appSettings.tableName) {
   throw new AppLogicError('Table name not defined.')
 }
 ```
+
+## Parsing JSON
+```javascript
+import { AppError } from './AppError'
+
+export class InvalidJsonError extends AppError {
+  constructor() {
+    super('Invalid JSON.')
+  }
+}
+```
+
+```javascript
+import { InvalidJsonError } from './InvalidJsonError'
+
+export const parseJson = (data: string | undefined | null): any => {
+  if (!data) {
+    throw new InvalidJsonError()
+  }
+  try {
+    return JSON.parse(data)
+  } catch (e) {
+    throw new InvalidJsonError()
+  }
+}
+```
