@@ -70,6 +70,89 @@ export class EmailButton extends React.Component<> {
 
 ```
 
+## Check Coding Style
+
+use Tslint and Typescript compiler
+
+```
+yarn add --dev typescript tslint tslint-config-standard tslint-microsoft-contrib tslint-react
+```
+
+tslint.json
+```json
+{
+  "defaultSeverity": "error",
+  "extends": [
+    "tslint-microsoft-contrib",
+    "tslint:latest",
+    "tslint-react",
+    "tslint-config-standard"
+  ],
+  "jsRules": {},
+  "rules": {
+    "no-submodule-imports": [true, "src"],
+    "no-implicit-dependencies": [true, "dev", ["src"]],
+    "interface-name": [true, "never-prefix"],
+    "space-before-function-paren": [true, {
+      "anonymous": "always",
+      "named": "never",
+      "asyncArrow": "always"}],
+    "object-literal-key-quotes": [true, "as-needed"],
+    "only-arrow-functions": true,
+    "type-literal-delimiter": false,
+    "strict-boolean-expressions": false,
+    "completed-docs": false,
+    "jsx-boolean-value": ["never"],
+  },
+  "rulesDirectory": [
+    "node_modules/tslint-microsoft-contrib"
+  ]
+}
+
+```
+
+tsconfig.json
+```json
+{
+  "compilerOptions": {
+    "target": "es6",
+    "module": "es6",
+    "sourceMap": true,
+    "strict": true,
+    "moduleResolution": "node",
+    "rootDir": "./src",
+    "baseUrl": "./",
+    "pretty": true,
+    "declaration": true,
+    "noImplicitAny": true,
+    "noUnusedLocals": true,
+    "removeComments": true,
+    "noImplicitReturns": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "forceConsistentCasingInFileNames": true,
+    "outDir": "dist",
+    "jsx": "react"
+  },
+  "include": [
+    "src/**/*"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}
+```
+
+package.json
+```json
+{
+  ...
+  "scripts": {
+    "lint": "tsc && tslint --project tsconfig.json --config tslint.json src/**/*.ts",
+    ...
+  }
+}
+```
+
 ## Errors
 
 ```
