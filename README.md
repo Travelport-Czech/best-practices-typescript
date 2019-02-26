@@ -83,31 +83,49 @@ tslint.json
 {
   "defaultSeverity": "error",
   "extends": [
-    "tslint-microsoft-contrib",
     "tslint:latest",
-    "tslint-react",
-    "tslint-config-standard"
+    "tslint-consistent-codestyle",
+    "tslint-eslint-rules",
+    "tslint-immutable",
+    "tslint-microsoft-contrib",
+    "tslint-config-prettier",
+    "tslint-plugin-prettier"
   ],
   "jsRules": {},
   "rules": {
     "no-submodule-imports": [true, "src"],
     "no-implicit-dependencies": [true, "dev", ["src"]],
-    "interface-name": [true, "never-prefix"],
-    "space-before-function-paren": [true, {
-      "anonymous": "always",
-      "named": "never",
-      "asyncArrow": "always"}],
-    "object-literal-key-quotes": [true, "as-needed"],
+    "typedef": [false, "variable-declaration"], // Typedef enforcement for variables that contain a function => duplicate function declaration
+    "no-use-before-declare": false, // useful only for var declaration
     "only-arrow-functions": true,
+    "interface-name": [true, "never-prefix"],
+    "jsx-boolean-value": ["never"],
+    "prefer-template": false,
     "type-literal-delimiter": false,
+    "newline-per-chained-call": false,
     "strict-boolean-expressions": false,
     "completed-docs": false,
-    "jsx-boolean-value": ["never"],
+    "mocha-no-side-effect-code": false,
+    // Immutability rules
+    "readonly-keyword": true,
+    "no-let": true,
+    "no-object-mutation": true,
+    "no-delete": true,
+    "prettier": [
+      true,
+      {
+        "singleQuote":  true,
+        "semi": false,
+        "printWidth": 120
+      }
+    ]
   },
   "rulesDirectory": [
+    "node_modules/tslint-eslint-rules/dist/rules",
     "node_modules/tslint-microsoft-contrib"
   ]
 }
+
 
 ```
 
@@ -130,7 +148,7 @@ tsconfig.json
     "noImplicitReturns": true,
     "suppressImplicitAnyIndexErrors": true,
     "forceConsistentCasingInFileNames": true,
-    "outDir": "dist",
+    "outDir": ".dist",
     "jsx": "react"
   },
   "include": [
@@ -147,7 +165,8 @@ package.json
 {
   ...
   "scripts": {
-    "lint": "tsc && tslint --project tsconfig.json --config tslint.json src/**/*.ts",
+    "lint": "tsc && tslint --project tsconfig.json --config tslint.json",
+    "lint-fix": "prettier 'src/**/*' --write --single-quote --no-semi --print-width 120",
     ...
   }
 }
